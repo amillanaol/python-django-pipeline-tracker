@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-*Automatically generated with AI on 2026-02-27 23:59*
+*Automatically generated with AI on 2026-02-28 00:05*
+
+## [v1.6.11] - 2026-02-28
+
+Añadir CHANGELOG y archivo de citas
 
 ## [v1.6.10] - 2026-02-27
 
