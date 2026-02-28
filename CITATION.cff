@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+title: "Interactive Git Versioneer"
+authors:
+  - family-names: "Millanao Lepileo"
+    given-names: "Alexis E."
+    orcid: "https://orcid.org/0009-0003-1768-7048"
+date-released: 2026-02-27
+version: "0.1.0"
