@@ -16,6 +16,7 @@ dependencies = [
     "whitenoise>=6.6,<7.0",
     "django-cors-headers>=4.3,<5.0",
     "django-filter>=24.0,<25.0",
+    "python-dotenv>=1.0,<2.0",
 ]
 
 [project.optional-dependencies]

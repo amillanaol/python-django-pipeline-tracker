@@ -1,7 +1,13 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
+
 import os
 import sys
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).parent / ".env")
 
 
 def main() -> None:
@@ -17,6 +23,11 @@ def main() -> None:
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+
+    if len(sys.argv) > 1 and sys.argv[1] == "runserver" and len(sys.argv) == 2:
+        port = os.environ.get("PORT", "8000")
+        sys.argv.append(port)
+
     execute_from_command_line(sys.argv)
 
 
