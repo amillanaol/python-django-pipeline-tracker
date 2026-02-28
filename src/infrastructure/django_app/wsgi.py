@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 env_path = Path(__file__).resolve().parents[3] / ".env"
 if env_path.exists():
-    load_dotenv(env_path)
+    load_dotenv(env_path, override=False)
 
 from django.core.wsgi import get_wsgi_application  # noqa: E402
 

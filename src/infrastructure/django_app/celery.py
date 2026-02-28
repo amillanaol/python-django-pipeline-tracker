@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 env_path = Path(__file__).resolve().parents[3] / ".env"
 if env_path.exists():
-    load_dotenv(env_path)
+    load_dotenv(env_path, override=False)
 
 from celery import Celery  # noqa: E402
 
