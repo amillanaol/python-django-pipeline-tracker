@@ -48,6 +48,7 @@ markers = [
 target-version = "py310"
 line-length = 99
 src = ["src", "tests"]
+exclude = ["**/migrations/**"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "W", "UP"]
