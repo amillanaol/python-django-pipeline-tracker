@@ -2,7 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
-*Automatically generated with AI on 2026-02-28 00:09*
+*Automatically generated with AI on 2026-02-28 00:41*
+
+## [v1.6.16] - 2026-02-28
+
+Actualiza configuración Docker para puerto y variables de entorno
+
+## [v1.6.15] - 2026-02-28
+
+Refactor settings and add favicon route
+
+## [v1.6.14] - 2026-02-28
+
+Actualiza ejemplo de entorno y versión de citación
+
+## [v1.6.13] - 2026-02-28
+
+Actualiza changelog a versión 1.6.12
 
 ## [v1.6.12] - 2026-02-28
 
