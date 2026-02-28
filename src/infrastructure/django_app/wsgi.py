@@ -1,6 +1,13 @@
 import os
+from pathlib import Path
 
-from django.core.wsgi import get_wsgi_application
+from dotenv import load_dotenv
+
+env_path = Path(__file__).resolve().parents[3] / ".env"
+if env_path.exists():
+    load_dotenv(env_path)
+
+from django.core.wsgi import get_wsgi_application  # noqa: E402
 
 os.environ.setdefault(
     "DJANGO_SETTINGS_MODULE",
