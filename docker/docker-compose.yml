@@ -4,26 +4,21 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     ports:
-      - "8000:8000"
+      - "${PORT:-8181}:${PORT:-8181}"
+    env_file:
+      - ../.env
     environment:
-      - DJANGO_SETTINGS_MODULE=src.infrastructure.django_app.settings.production
-      - DJANGO_SECRET_KEY=change-me-in-production
-      - DB_NAME=pipeline_tracker
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
       - DB_HOST=db
-      - DB_PORT=5432
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
-      - ALLOWED_HOSTS=localhost,127.0.0.1
     depends_on:
       db:
         condition: service_healthy
       redis:
         condition: service_started
     command: >
-      sh -c "python manage.py migrate --settings=src.infrastructure.django_app.settings.production &&
-             gunicorn src.infrastructure.django_app.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+      sh -c "python manage.py migrate &&
+             gunicorn src.infrastructure.django_app.wsgi:application --bind 0.0.0.0:${PORT:-8181} --workers 3"
 
   db:
     image: postgres:16-alpine
@@ -51,14 +46,10 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     command: celery -A src.infrastructure.django_app.celery worker --loglevel=info
+    env_file:
+      - ../.env
     environment:
-      - DJANGO_SETTINGS_MODULE=src.infrastructure.django_app.settings.production
-      - DJANGO_SECRET_KEY=change-me-in-production
-      - DB_NAME=pipeline_tracker
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
       - DB_HOST=db
-      - DB_PORT=5432
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
     depends_on:

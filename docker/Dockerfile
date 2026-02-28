@@ -14,8 +14,11 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 
 COPY . .
 
-RUN python manage.py collectstatic --noinput --settings=src.infrastructure.django_app.settings.production 2>/dev/null || true
+RUN DJANGO_SETTINGS_MODULE=src.infrastructure.django_app.settings.production \
+    python manage.py collectstatic --noinput 2>/dev/null || true
 
-EXPOSE 8000
+ENV PORT=8181
 
-CMD ["gunicorn", "src.infrastructure.django_app.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
+EXPOSE ${PORT}
+
+CMD gunicorn src.infrastructure.django_app.wsgi:application --bind 0.0.0.0:${PORT} --workers 3
